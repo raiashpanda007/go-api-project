@@ -15,7 +15,7 @@ type HTTPServer struct {
 type Config struct {
 	Env         string `yaml:"env"`
 	StoragePath string `yaml:"storage_path" env-required:"true"`
-	HTTPServer  `yaml:http_server`
+	HTTPServer  `yaml:"http_server"`
 }
 
 func MustLoad() *Config {
