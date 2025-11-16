@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/raiashpanda007/go-api-project/pkg/config"
+	"github.com/raiashpanda007/go-api-project/pkg/http/controllers/student"
 )
 
 func main() {
@@ -22,6 +23,8 @@ func main() {
 	router.HandleFunc("GET /health-status", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("OK"))
 	})
+
+	router.HandleFunc("POST /api/students", student.Create())
 
 	server := http.Server{
 		Addr:    configData.Addr,
@@ -57,5 +60,7 @@ func main() {
 	if err != nil {
 		slog.Error("Unable to shutdown the server :: ", slog.String("error", err.Error()))
 	}
+
+	slog.Info("Server shut down gracefull ")
 
 }
